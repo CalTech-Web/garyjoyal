@@ -153,7 +153,7 @@ export default function PressPage() {
         background: "linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
       }}>
         <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-5">
             News &amp; Updates
           </span>
@@ -166,7 +166,7 @@ export default function PressPage() {
 
       {/* Press Releases */}
       <section className="py-24 bg-[var(--color-warm-white)] bg-dots relative">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Timeline line */}
           <div className="hidden md:block absolute left-1/2 top-24 bottom-24 w-px bg-gradient-to-b from-transparent via-[var(--color-gold)]/15 to-transparent" />
 
@@ -229,7 +229,7 @@ export default function PressPage() {
 
       {/* Disclaimer */}
       <section className="py-10 bg-[var(--color-warm-gray)] relative section-fade-top">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs text-gray-400 leading-relaxed">
             The announcements above are for informational purposes only for the
             confidential use of the intended recipient. No announcement
