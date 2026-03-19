@@ -166,7 +166,7 @@ export default function PressPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative min-h-[500px] flex items-center overflow-hidden">
         <HeroBackground />
         <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

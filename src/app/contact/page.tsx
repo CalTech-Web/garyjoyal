@@ -72,7 +72,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative min-h-[500px] flex items-center overflow-hidden">
         <HeroBackground />
         <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px]" />
