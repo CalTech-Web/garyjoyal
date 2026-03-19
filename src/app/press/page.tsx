@@ -9,6 +9,7 @@ function HeroBackground() {
         src="/photos/hero-bg.jpg"
         alt=""
         fill
+        sizes="100vw"
         className="object-cover"
         aria-hidden="true"
         priority
@@ -196,6 +197,8 @@ export default function PressPage() {
                         src={pr.image}
                         alt={pr.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1280px"
+                        loading="lazy"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/60 via-transparent to-transparent" />

@@ -11,6 +11,7 @@ function HeroBackground() {
         src="/photos/hero-bg.jpg"
         alt=""
         fill
+        sizes="100vw"
         className="object-cover"
         aria-hidden="true"
         priority
@@ -92,7 +93,7 @@ export default function ContactPage() {
       {/* Contact Section */}
       <section className="py-24 bg-[var(--color-warm-white)] bg-dots relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-12">
             {/* Info Cards */}
             <div className="lg:col-span-2 space-y-5">
               {contactInfo.map((info, i) => (

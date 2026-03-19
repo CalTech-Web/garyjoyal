@@ -49,7 +49,7 @@ export default function HeroContent() {
         financial services.
       </motion.p>
 
-      <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+      <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <Link
           href="/contact"
           className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-bold text-sm uppercase tracking-wider rounded-full shadow-2xl shadow-[var(--color-gold)]/25 hover:shadow-[var(--color-gold)]/40 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden"

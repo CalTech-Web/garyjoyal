@@ -59,7 +59,7 @@ export default function StatsBar() {
                 <AnimatedCounter
                   value={stat.value}
                   useCommas={stat.useCommas}
-                  className="block text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight"
+                  className="block text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight"
                 />
                 <p className="text-white/40 text-sm font-medium tracking-wide">{stat.label}</p>
               </div>

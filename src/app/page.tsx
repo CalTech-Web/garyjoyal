@@ -60,6 +60,7 @@ export default function HomePage() {
           src="/photos/JCM_HQ_lr.jpg"
           alt="Joyal Capital Management Headquarters"
           fill
+          sizes="100vw"
           className="object-cover object-center scale-105"
           priority
         />
@@ -86,7 +87,7 @@ export default function HomePage() {
       {/* ════ ABOUT ════ */}
       <section className="py-28 bg-[var(--color-warm-white)] bg-dots relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
             {/* Image side */}
             <ScrollReveal direction="left">
               <div className="relative">
@@ -99,6 +100,7 @@ export default function HomePage() {
                     alt="Gary Joyal - CEO of Joyal Capital Management"
                     width={540}
                     height={650}
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="w-full object-cover"
                   />
                   {/* Subtle overlay gradient */}
@@ -237,7 +239,7 @@ export default function HomePage() {
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px] animate-float-slow" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <ScrollReveal direction="left">
               <div>
                 <span className="inline-block px-4 py-1.5 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/5 text-[var(--color-gold)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
@@ -304,7 +306,7 @@ export default function HomePage() {
         <div className="absolute bottom-[10%] right-[10%] w-64 h-64 bg-[var(--color-navy)]/[0.03] rounded-full blur-[80px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 md:gap-16 items-start">
             {/* Left column - heading */}
             <ScrollReveal direction="left" className="lg:col-span-2 lg:sticky lg:top-24">
               <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/15 text-[var(--color-gold-dark)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
