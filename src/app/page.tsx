@@ -43,50 +43,56 @@ export default function HomePage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-navy)]/80 to-[var(--color-navy-dark)]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-navy)]/80 via-[var(--color-navy-dark)]/75 to-[var(--color-navy-dark)]/95" />
+        {/* Decorative orbs */}
+        <div className="absolute top-20 left-10 w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-[var(--color-navy-light)]/20 rounded-full blur-3xl animate-float-slow" />
         <div className="relative z-10 text-center text-white px-6 max-w-3xl mx-auto">
-          <p className="text-[var(--color-gold)] uppercase tracking-[0.25em] text-sm font-semibold mb-4">
+          <p className="text-gradient uppercase tracking-[0.25em] text-sm font-semibold mb-4">
             Joyal Capital Management
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight drop-shadow-lg">
             Gary Joyal
           </h1>
           <p className="text-xl md:text-2xl text-white/80 mb-3">
             Founder, CEO &amp; Managing Director
           </p>
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">
+          <p className="text-white/55 text-lg max-w-xl mx-auto mb-8">
             A leading industry expert with over two and a half decades in
             financial services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-semibold text-sm uppercase tracking-wide rounded hover:bg-[var(--color-gold-light)] transition-colors"
+              className="btn-lift inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-semibold text-sm uppercase tracking-wide rounded-lg shadow-lg shadow-[var(--color-gold)]/20"
             >
               Get in Touch
             </Link>
             <Link
               href="/press"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 border-2 border-white/30 text-white font-semibold text-sm uppercase tracking-wide rounded hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border-2 border-white/20 text-white font-semibold text-sm uppercase tracking-wide rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300 backdrop-blur-sm"
             >
               View Press
             </Link>
           </div>
         </div>
+        {/* Bottom gradient fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[var(--color-warm-white)] to-transparent" />
       </section>
 
       {/* About */}
-      <section className="py-20 bg-[var(--color-warm-white)]">
+      <section className="py-24 bg-[var(--color-warm-white)] bg-pattern relative">
         <ScrollReveal>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <p className="text-[var(--color-gold-dark)] uppercase tracking-widest text-xs font-bold mb-3">
+                <p className="text-gradient uppercase tracking-widest text-xs font-bold mb-3">
                   About
                 </p>
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                   About Gary Joyal
                 </h2>
+                <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mb-6" />
                 <p className="text-gray-600 leading-relaxed mb-5">
                   Gary Joyal is the Founder, Chief Executive Officer and Managing
                   Director of Joyal Capital Management, LLC. With over two and a
@@ -106,16 +112,17 @@ export default function HomePage() {
                   management, and risk evaluation.
                 </p>
               </div>
-              <div className="relative">
+              <div className="relative group">
                 <Image
                   src="/photos/Gary-Joyal-2.jpg"
                   alt="Gary Joyal - CEO of Joyal Capital Management"
                   width={540}
                   height={650}
-                  className="rounded-xl shadow-2xl w-full object-cover"
+                  className="rounded-2xl shadow-2xl w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
-                <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-[var(--color-gold)]/20 rounded-xl -z-10" />
-                <div className="absolute -top-4 -right-4 w-32 h-32 bg-[var(--color-navy)]/10 rounded-xl -z-10" />
+                <div className="absolute -bottom-4 -left-4 w-28 h-28 bg-gradient-to-br from-[var(--color-gold)]/25 to-[var(--color-gold-light)]/10 rounded-2xl -z-10 animate-float-slow" />
+                <div className="absolute -top-4 -right-4 w-36 h-36 bg-gradient-to-br from-[var(--color-navy)]/10 to-[var(--color-navy-light)]/5 rounded-2xl -z-10 animate-float" />
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/20" />
               </div>
             </div>
           </div>
@@ -126,16 +133,19 @@ export default function HomePage() {
       <StatsBar />
 
       {/* Subsidiaries */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white bg-pattern relative">
+        {/* Decorative top accent */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal>
-            <div className="text-center mb-14">
-              <p className="text-[var(--color-gold-dark)] uppercase tracking-widest text-xs font-bold mb-3">
+            <div className="text-center mb-16">
+              <p className="text-gradient uppercase tracking-widest text-xs font-bold mb-3">
                 Our Divisions
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-4">
                 Companies Founded by Gary
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mb-5" />
               <p className="text-gray-500 max-w-2xl mx-auto">
                 These subsidiaries enable JCM to serve as the back-end support
                 for the Private Client Group - advising clients about sizable
@@ -144,17 +154,17 @@ export default function HomePage() {
               </p>
             </div>
           </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {subsidiaries.map((sub, i) => (
               <ScrollReveal key={sub.title} delay={i * 0.1}>
-                <div className="group bg-[var(--color-warm-white)] rounded-xl p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-[var(--color-navy)]/10 flex items-center justify-center mb-5 group-hover:bg-[var(--color-gold)]/20 group-hover:scale-110 transition-all duration-300">
+                <div className="card-glow group bg-[var(--color-warm-white)] rounded-xl p-8 border border-gray-100/80 hover:-translate-y-1.5 transition-all duration-400">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--color-navy)]/10 to-[var(--color-navy)]/5 flex items-center justify-center mb-5 group-hover:bg-gradient-to-br group-hover:from-[var(--color-gold)]/20 group-hover:to-[var(--color-gold-light)]/10 group-hover:scale-110 transition-all duration-300">
                     <sub.icon
-                      size={22}
-                      className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors duration-300"
+                      size={24}
+                      className="icon-hover text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors duration-300"
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-[var(--color-navy)] mb-3">
+                  <h3 className="text-lg font-bold text-[var(--color-navy)] mb-3 group-hover:text-[var(--color-navy-light)] transition-colors">
                     {sub.title}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed">
@@ -168,16 +178,20 @@ export default function HomePage() {
       </section>
 
       {/* Charitable Work */}
-      <section className="py-20 bg-[var(--color-warm-gray)]">
+      <section className="py-24 bg-[var(--color-warm-gray)] relative overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
+        {/* Decorative background orb */}
+        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-96 h-96 bg-[var(--color-gold)]/5 rounded-full blur-3xl" />
         <ScrollReveal>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-[var(--color-gold-dark)] uppercase tracking-widest text-xs font-bold mb-3">
+              <p className="text-gradient uppercase tracking-widest text-xs font-bold mb-3">
                 Community
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                 Charitable Work
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mb-6" />
               <p className="text-gray-600 leading-relaxed mb-5">
                 Although Gary&apos;s primary career focus is the financial betterment
                 of his clients, he feels a strong tie to the local communities in
@@ -195,16 +209,18 @@ export default function HomePage() {
       </section>
 
       {/* Leadership & Future */}
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white bg-pattern relative">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
         <ScrollReveal>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
-              <p className="text-[var(--color-gold-dark)] uppercase tracking-widest text-xs font-bold mb-3">
+              <p className="text-gradient uppercase tracking-widest text-xs font-bold mb-3">
                 Leadership
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-navy)] mb-6">
                 Leading With Vision
               </h2>
+              <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mb-6" />
               <p className="text-gray-600 leading-relaxed mb-5">
                 One of the key inputs that enabled Gary to grow his brand is the
                 diversification of his investments. Gary has grown JCM to almost
@@ -228,28 +244,29 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section
-        className="py-20"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
-        }}
-      >
+      <section className="py-24 relative overflow-hidden animate-gradient-shift" style={{
+        background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 30%, var(--color-navy-light) 60%, var(--color-navy) 100%)",
+        backgroundSize: "200% 200%",
+      }}>
+        {/* Decorative orbs */}
+        <div className="absolute top-10 left-10 w-48 h-48 bg-[var(--color-gold)]/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-3xl animate-float-slow" />
         <ScrollReveal>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p className="text-[var(--color-gold)] uppercase tracking-widest text-xs font-bold mb-3">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+            <p className="text-gradient uppercase tracking-widest text-xs font-bold mb-3">
               Get Started
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 drop-shadow-lg">
               Ready to Connect?
             </h2>
-            <p className="text-white/60 max-w-xl mx-auto mb-8">
+            <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mb-6" />
+            <p className="text-white/55 max-w-xl mx-auto mb-8">
               For more information about Joyal Capital Management and its
               services, reach out using the contact form.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3 bg-[var(--color-gold)] text-[var(--color-navy)] font-semibold text-sm uppercase tracking-wide rounded hover:bg-[var(--color-gold-light)] transition-colors"
+              className="btn-lift inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-semibold text-sm uppercase tracking-wide rounded-lg shadow-lg shadow-[var(--color-gold)]/20"
             >
               Contact Gary <ArrowRight size={16} />
             </Link>

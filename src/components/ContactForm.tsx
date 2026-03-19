@@ -51,6 +51,9 @@ export default function ContactForm() {
     }
   }
 
+  const inputClasses =
+    "w-full px-4 py-3 rounded-xl border border-gray-200 bg-[var(--color-warm-white)]/50 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/40 focus:border-[var(--color-gold)] focus:bg-white transition-all duration-300 placeholder:text-gray-400";
+
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
@@ -66,7 +69,7 @@ export default function ContactForm() {
           name="name"
           required
           minLength={2}
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)] transition-all"
+          className={inputClasses}
           placeholder="Full name"
         />
       </div>
@@ -83,7 +86,7 @@ export default function ContactForm() {
           id="email"
           name="email"
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)] transition-all"
+          className={inputClasses}
           placeholder="you@example.com"
         />
       </div>
@@ -99,7 +102,7 @@ export default function ContactForm() {
           type="text"
           id="subject"
           name="subject"
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)] transition-all"
+          className={inputClasses}
           placeholder="How can we help?"
         />
       </div>
@@ -115,7 +118,7 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={5}
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/50 focus:border-[var(--color-gold)] transition-all resize-none"
+          className={`${inputClasses} resize-none`}
           placeholder="Tell us more about your inquiry..."
         />
       </div>
@@ -123,7 +126,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={loading}
-        className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-navy)] text-white text-sm font-semibold rounded-lg hover:bg-[var(--color-navy-light)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="btn-lift inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[var(--color-navy)] to-[var(--color-navy-light)] text-white text-sm font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[var(--color-navy)]/15 transition-all duration-300"
       >
         {loading ? (
           <>
@@ -139,14 +142,14 @@ export default function ContactForm() {
       </button>
 
       {success && (
-        <div className="flex items-center gap-2 text-green-700 bg-green-50 border border-green-200 rounded-lg px-4 py-3 text-sm">
+        <div className="flex items-center gap-2 text-green-700 bg-green-50 border border-green-200 rounded-xl px-5 py-3.5 text-sm">
           <CheckCircle size={16} />
           Thank you! Your message has been sent successfully.
         </div>
       )}
 
       {error && (
-        <div className="flex items-center gap-2 text-red-700 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm">
+        <div className="flex items-center gap-2 text-red-700 bg-red-50 border border-red-200 rounded-xl px-5 py-3.5 text-sm">
           <AlertCircle size={16} />
           {error}
         </div>
