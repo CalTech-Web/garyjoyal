@@ -55,7 +55,7 @@ export default function HomePage() {
   return (
     <>
       {/* ════ HERO ════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-[75px] pb-[50px]">
         <Image
           src="/photos/JCM_HQ_lr.jpg"
           alt="Joyal Capital Management Headquarters"
