@@ -31,7 +31,7 @@ export default function Header() {
           : "bg-transparent backdrop-blur-sm border-b border-white/[0.03]"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
         <Link href="/" className="flex items-center gap-2.5 group">
           <div className="w-9 h-9 rounded-lg bg-[var(--color-gold)]/15 flex items-center justify-center group-hover:bg-[var(--color-gold)]/25 transition-all duration-300">
             <Landmark size={18} className="text-[var(--color-gold)] animate-pulse-glow" />

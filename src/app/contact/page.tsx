@@ -92,7 +92,7 @@ export default function ContactPage() {
         <HeroBackground />
         <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px]" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-5">
             Reach Out
           </span>
@@ -107,7 +107,7 @@ export default function ContactPage() {
 
       {/* Contact Section */}
       <section className="py-24 bg-[var(--color-warm-white)] bg-dots relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Info Cards */}
             <div className="lg:col-span-2 space-y-5">

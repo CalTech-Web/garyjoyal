@@ -85,7 +85,7 @@ export default function HomePage() {
 
       {/* ════ ABOUT ════ */}
       <section className="py-28 bg-[var(--color-warm-white)] bg-dots relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Image side */}
             <ScrollReveal direction="left">
@@ -170,7 +170,7 @@ export default function HomePage() {
         <div className="absolute top-[10%] right-[5%] w-80 h-80 bg-[var(--color-gold)]/[0.04] rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-[10%] left-[5%] w-64 h-64 bg-[var(--color-gold)]/[0.03] rounded-full blur-[100px] animate-float-slow" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-1.5 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/5 text-[var(--color-gold)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
@@ -236,7 +236,7 @@ export default function HomePage() {
         <div className="absolute top-20 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px] animate-float-slow" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <ScrollReveal direction="left">
               <div>
@@ -303,7 +303,7 @@ export default function HomePage() {
         <div className="absolute top-[20%] left-[5%] w-72 h-72 bg-[var(--color-gold)]/[0.04] rounded-full blur-[100px]" />
         <div className="absolute bottom-[10%] right-[10%] w-64 h-64 bg-[var(--color-navy)]/[0.03] rounded-full blur-[80px]" />
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
             {/* Left column - heading */}
             <ScrollReveal direction="left" className="lg:col-span-2 lg:sticky lg:top-24">
@@ -389,7 +389,7 @@ export default function HomePage() {
       {/* ════ CTA ════ */}
       <section className="relative py-24 overflow-hidden bg-[var(--color-warm-white)]">
         <div className="absolute inset-0 bg-dots" />
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="relative rounded-3xl overflow-hidden">
               {/* Card background */}
