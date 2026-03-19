@@ -1,7 +1,39 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Mail, Clock, Globe } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
+
+function HeroBackground() {
+  return (
+    <>
+      {/* Left portrait */}
+      <div className="absolute left-0 top-0 bottom-0 w-[35%] overflow-hidden opacity-[0.06] pointer-events-none">
+        <Image
+          src="/photos/Gary-Joyal-2.jpg"
+          alt=""
+          fill
+          className="object-cover object-top"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--color-navy-dark)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy-dark)] via-transparent to-[var(--color-navy-dark)]/50" />
+      </div>
+      {/* Right portrait (flipped) */}
+      <div className="absolute right-0 top-0 bottom-0 w-[35%] overflow-hidden opacity-[0.04] pointer-events-none">
+        <Image
+          src="/photos/Gary-Joyal-2.jpg"
+          alt=""
+          fill
+          className="object-cover object-top -scale-x-100"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[var(--color-navy-dark)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy-dark)] via-transparent to-[var(--color-navy-dark)]/50" />
+      </div>
+    </>
+  );
+}
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -57,6 +89,7 @@ export default function ContactPage() {
       <section className="relative py-24 overflow-hidden noise-overlay" style={{
         background: "linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
       }}>
+        <HeroBackground />
         <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
         <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px]" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
