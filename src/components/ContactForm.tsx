@@ -26,6 +26,7 @@ export default function ContactForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             site: "garyjoyal.com",
+            FORM_RECEIVER_EMAIL: "saif@caltechweb.com",
             name: formData.get("name"),
             email: formData.get("email"),
             subject: formData.get("subject"),
