@@ -163,54 +163,63 @@ export default function HomePage() {
       <StatsBar />
 
       {/* ════ SUBSIDIARIES ════ */}
-      <section className="py-28 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-dots" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--color-gold)]/[0.03] rounded-full blur-[100px]" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="relative py-28 overflow-hidden noise-overlay" style={{
+        background: "linear-gradient(170deg, var(--color-navy-dark) 0%, var(--color-navy) 40%, var(--color-navy-light) 100%)",
+      }}>
+        {/* Decorative elements */}
+        <div className="absolute top-[10%] right-[5%] w-80 h-80 bg-[var(--color-gold)]/[0.04] rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="absolute bottom-[10%] left-[5%] w-64 h-64 bg-[var(--color-gold)]/[0.03] rounded-full blur-[100px] animate-float-slow" />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal>
             <div className="text-center mb-16">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold-dark)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
+              <span className="inline-block px-4 py-1.5 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/5 text-[var(--color-gold)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
                 Our Divisions
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[var(--color-navy)] mb-4 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
                 Companies Founded <br className="hidden md:block" />by Gary
               </h2>
-              <span className="accent-line-center mb-6" />
-              <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+              <div className="w-12 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mb-6" />
+              <p className="text-white/50 max-w-2xl mx-auto text-lg">
                 These subsidiaries enable JCM to serve as the back-end support
                 for the Private Client Group.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {subsidiaries.map((sub, i) => (
               <ScrollReveal key={sub.title} delay={i * 0.1} direction={i % 2 === 0 ? "left" : "right"}>
-                <div className="card-premium group p-8 md:p-10 h-full relative">
+                <div className="glass rounded-2xl p-8 md:p-10 h-full relative group hover:bg-white/[0.08] hover:border-white/[0.12] transition-all duration-400 overflow-hidden">
                   {/* Top colored stripe */}
-                  <div className={`absolute top-0 left-8 right-8 h-[3px] rounded-b-full bg-gradient-to-r ${sub.stripe} opacity-40 group-hover:opacity-100 group-hover:left-6 group-hover:right-6 transition-all duration-500`} />
+                  <div className={`absolute top-0 left-8 right-8 h-[3px] rounded-b-full bg-gradient-to-r ${sub.stripe} opacity-30 group-hover:opacity-80 group-hover:left-0 group-hover:right-0 transition-all duration-500`} />
+
+                  {/* Corner glow */}
+                  <div className="absolute -top-16 -right-16 w-32 h-32 bg-[var(--color-gold)]/[0.04] rounded-full blur-3xl group-hover:bg-[var(--color-gold)]/[0.10] transition-all duration-500" />
 
                   {/* Number badge */}
-                  <div className="absolute top-6 right-8 text-5xl font-black text-[var(--color-navy)]/[0.04] group-hover:text-[var(--color-gold)]/[0.08] transition-colors duration-500 select-none">
+                  <div className="absolute top-6 right-8 text-6xl font-black text-white/[0.03] group-hover:text-[var(--color-gold)]/[0.08] transition-colors duration-500 select-none">
                     0{i + 1}
                   </div>
 
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-2xl ${sub.iconBg} bg-gradient-to-br ${sub.accent} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-400`}>
-                    <sub.icon
-                      size={24}
-                      className="icon-hover text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors duration-300"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-[var(--color-navy)] mb-3 group-hover:text-[var(--color-navy-light)] transition-colors">
-                    {sub.title}
-                  </h3>
-                  <p className="text-gray-500 leading-relaxed">
-                    {sub.description}
-                  </p>
-                  {/* Hover arrow */}
-                  <div className="mt-5 flex items-center gap-1.5 text-[var(--color-gold-dark)] text-sm font-semibold opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300">
-                    Learn more <ArrowRight size={14} />
+                  <div className="relative">
+                    {/* Icon */}
+                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${sub.accent} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[var(--color-gold)]/10 transition-all duration-400`}>
+                      <sub.icon
+                        size={24}
+                        className="text-white/80 group-hover:text-[var(--color-gold)] transition-colors duration-300"
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[var(--color-gold-light)] transition-colors">
+                      {sub.title}
+                    </h3>
+                    <p className="text-white/40 leading-relaxed">
+                      {sub.description}
+                    </p>
+                    {/* Hover arrow */}
+                    <div className="mt-5 flex items-center gap-1.5 text-[var(--color-gold)] text-sm font-semibold opacity-0 group-hover:opacity-100 translate-x-[-8px] group-hover:translate-x-0 transition-all duration-300">
+                      Learn more <ArrowRight size={14} />
+                    </div>
                   </div>
                 </div>
               </ScrollReveal>
@@ -288,32 +297,38 @@ export default function HomePage() {
       </section>
 
       {/* ════ LEADERSHIP ════ */}
-      <section className="py-28 bg-[var(--color-warm-white)] bg-diagonal relative section-fade-top">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-28 bg-[var(--color-warm-white)] relative overflow-hidden">
+        {/* Background texture */}
+        <div className="absolute inset-0 bg-diagonal" />
+        <div className="absolute top-[20%] left-[5%] w-72 h-72 bg-[var(--color-gold)]/[0.04] rounded-full blur-[100px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-64 h-64 bg-[var(--color-navy)]/[0.03] rounded-full blur-[80px]" />
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-start">
             {/* Left column - heading */}
             <ScrollReveal direction="left" className="lg:col-span-2 lg:sticky lg:top-24">
-              <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold-dark)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/15 text-[var(--color-gold-dark)] uppercase tracking-[0.15em] text-xs font-bold mb-5">
                 Leadership
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-[var(--color-navy)] mb-4 leading-tight">
                 Leading With Vision
               </h2>
               <span className="accent-line mb-6" />
-              <p className="text-gray-500 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed text-lg">
                 Gary has efficiently established himself as a leading financial
                 expert in New England and beyond.
               </p>
             </ScrollReveal>
 
             {/* Right column - feature blocks */}
-            <div className="lg:col-span-3 space-y-6">
+            <div className="lg:col-span-3 space-y-5">
               <ScrollReveal delay={0.1}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                <div className="relative rounded-2xl bg-white p-7 group hover:shadow-2xl hover:shadow-[var(--color-gold)]/8 hover:-translate-y-1 transition-all duration-400 overflow-hidden border border-black/[0.04]">
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
-                      <TrendingUp size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-[var(--color-gold)]/[0.04] rounded-full blur-2xl group-hover:bg-[var(--color-gold)]/[0.10] transition-all duration-500" />
+                  <div className="flex items-start gap-5 relative">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/15 to-[var(--color-gold)]/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-[var(--color-gold)]/10 transition-all duration-300">
+                      <TrendingUp size={20} className="text-[var(--color-gold-dark)]" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Diversified Growth</h3>
@@ -328,11 +343,12 @@ export default function HomePage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.2}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                <div className="relative rounded-2xl bg-white p-7 group hover:shadow-2xl hover:shadow-[var(--color-gold)]/8 hover:-translate-y-1 transition-all duration-400 overflow-hidden border border-black/[0.04]">
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
-                      <Users2 size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-[var(--color-gold)]/[0.04] rounded-full blur-2xl group-hover:bg-[var(--color-gold)]/[0.10] transition-all duration-500" />
+                  <div className="flex items-start gap-5 relative">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/15 to-[var(--color-gold)]/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-[var(--color-gold)]/10 transition-all duration-300">
+                      <Users2 size={20} className="text-[var(--color-gold-dark)]" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Client-Centered Leadership</h3>
@@ -347,11 +363,12 @@ export default function HomePage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.3}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                <div className="relative rounded-2xl bg-white p-7 group hover:shadow-2xl hover:shadow-[var(--color-gold)]/8 hover:-translate-y-1 transition-all duration-400 overflow-hidden border border-black/[0.04]">
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
-                      <Target size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-[var(--color-gold)]/[0.04] rounded-full blur-2xl group-hover:bg-[var(--color-gold)]/[0.10] transition-all duration-500" />
+                  <div className="flex items-start gap-5 relative">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/15 to-[var(--color-gold)]/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:shadow-md group-hover:shadow-[var(--color-gold)]/10 transition-all duration-300">
+                      <Target size={20} className="text-[var(--color-gold-dark)]" />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Future Forward</h3>
@@ -370,53 +387,51 @@ export default function HomePage() {
       </section>
 
       {/* ════ CTA ════ */}
-      <section className="relative py-32 overflow-hidden noise-overlay">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 animate-gradient-shift" style={{
-          background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 25%, var(--color-navy-light) 50%, var(--color-navy) 75%, var(--color-navy-dark) 100%)",
-          backgroundSize: "300% 300%",
-        }} />
+      <section className="relative py-24 overflow-hidden bg-[var(--color-warm-white)]">
+        <div className="absolute inset-0 bg-dots" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal>
+            <div className="relative rounded-3xl overflow-hidden">
+              {/* Card background */}
+              <div className="absolute inset-0" style={{
+                background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
+              }} />
+              <div className="absolute inset-0 noise-overlay" />
 
-        {/* Large decorative orbs */}
-        <div className="absolute top-0 left-[20%] w-[500px] h-[500px] bg-[var(--color-gold)]/[0.04] rounded-full blur-[150px] animate-pulse-glow" />
-        <div className="absolute bottom-0 right-[10%] w-[400px] h-[400px] bg-[var(--color-gold)]/[0.03] rounded-full blur-[120px] animate-float-slow" />
+              {/* Decorative orbs */}
+              <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--color-gold)]/[0.06] rounded-full blur-[100px] animate-pulse-glow" />
+              <div className="absolute bottom-0 left-[10%] w-64 h-64 bg-[var(--color-gold)]/[0.04] rounded-full blur-[80px] animate-float-slow" />
 
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-dots opacity-50" />
+              {/* Top gold line */}
+              <div className="absolute top-0 left-12 right-12 h-[2px] bg-gradient-to-r from-transparent via-[var(--color-gold)]/40 to-transparent" />
 
-        {/* Decorative lines */}
-        <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/10 to-transparent" />
-
-        <ScrollReveal>
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-6">
-              Get Started
-            </span>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              Ready to <span className="text-gradient">Connect?</span>
-            </h2>
-            <p className="text-white/50 max-w-lg mx-auto mb-12 text-lg leading-relaxed">
-              For more information about Joyal Capital Management and its
-              services, reach out using the contact form.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/contact"
-                className="btn-shimmer inline-flex items-center gap-3 px-10 py-4.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-bold text-sm uppercase tracking-wider rounded-full shadow-2xl shadow-[var(--color-gold)]/25"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Contact Gary <ArrowRight size={16} />
-                </span>
-              </Link>
-              <Link
-                href="/press"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white/80 font-semibold text-sm uppercase tracking-wider hover:bg-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300"
-              >
-                View Press
-              </Link>
+              <div className="relative z-10 px-8 py-16 md:px-16 md:py-20 text-center">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+                  Let&apos;s Start a <span className="text-gradient">Conversation</span>
+                </h2>
+                <p className="text-white/50 max-w-lg mx-auto mb-10 text-lg leading-relaxed">
+                  Discover how Joyal Capital Management can help you achieve your financial goals.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link
+                    href="/contact"
+                    className="btn-shimmer inline-flex items-center gap-3 px-10 py-4.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-bold text-sm uppercase tracking-wider rounded-full shadow-2xl shadow-[var(--color-gold)]/25"
+                  >
+                    <span className="relative z-10 flex items-center gap-2">
+                      Get in Touch <ArrowRight size={16} />
+                    </span>
+                  </Link>
+                  <Link
+                    href="/press"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white/80 font-semibold text-sm uppercase tracking-wider hover:bg-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300"
+                  >
+                    View Press
+                  </Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </section>
     </>
   );
