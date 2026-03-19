@@ -6,6 +6,7 @@ import { motion, useInView } from "framer-motion";
 interface AnimatedCounterProps {
   value: string;
   className?: string;
+  useCommas?: boolean;
 }
 
 function parseValue(value: string): { prefix: string; number: number; suffix: string } {
@@ -14,7 +15,7 @@ function parseValue(value: string): { prefix: string; number: number; suffix: st
   return { prefix: match[1], number: parseInt(match[2], 10), suffix: match[3] };
 }
 
-export default function AnimatedCounter({ value, className = "" }: AnimatedCounterProps) {
+export default function AnimatedCounter({ value, className = "", useCommas = false }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [count, setCount] = useState(0);
@@ -53,6 +54,8 @@ export default function AnimatedCounter({ value, className = "" }: AnimatedCount
     );
   }
 
+  const display = useCommas ? count.toLocaleString() : count.toString();
+
   return (
     <motion.span
       ref={ref}
@@ -61,7 +64,7 @@ export default function AnimatedCounter({ value, className = "" }: AnimatedCount
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}{display}{suffix}
     </motion.span>
   );
 }

@@ -37,8 +37,7 @@ export default function HeroContent() {
         variants={fadeUp}
         className="text-5xl md:text-7xl lg:text-8xl font-bold mb-5 leading-[0.95] tracking-tight"
       >
-        <span className="block">Gary</span>
-        <span className="block text-gradient">Joyal</span>
+        Gary <span className="text-gradient">Joyal</span>
       </motion.h1>
 
       <motion.p variants={fadeUp} className="text-lg md:text-2xl text-white/70 mb-2 font-light tracking-wide">

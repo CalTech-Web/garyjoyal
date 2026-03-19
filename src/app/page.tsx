@@ -12,6 +12,8 @@ const subsidiaries = [
     description:
       "Full-service sell-side consulting for franchise owners - facilitating complex multi-unit transactions across the QSR space.",
     accent: "from-blue-500/20 to-cyan-500/10",
+    iconBg: "bg-blue-500/10",
+    stripe: "from-blue-500 to-cyan-400",
   },
   {
     icon: TrendingUp,
@@ -19,6 +21,8 @@ const subsidiaries = [
     description:
       "Sourcing qualified lenders and arranging credit for franchise acquisitions, real estate developments, and business expansions.",
     accent: "from-emerald-500/20 to-green-500/10",
+    iconBg: "bg-emerald-500/10",
+    stripe: "from-emerald-500 to-green-400",
   },
   {
     icon: Scale,
@@ -26,6 +30,8 @@ const subsidiaries = [
     description:
       "A private equity investment fund targeting real estate developments and QSR opportunities with strong projected returns.",
     accent: "from-amber-500/20 to-yellow-500/10",
+    iconBg: "bg-amber-500/10",
+    stripe: "from-amber-500 to-yellow-400",
   },
   {
     icon: Shield,
@@ -33,6 +39,8 @@ const subsidiaries = [
     description:
       "Comprehensive trust and estate planning services for high-net-worth individuals and closely-held corporations.",
     accent: "from-violet-500/20 to-purple-500/10",
+    iconBg: "bg-violet-500/10",
+    stripe: "from-violet-500 to-purple-400",
   },
 ];
 
@@ -73,8 +81,6 @@ export default function HomePage() {
 
         <HeroContent />
 
-        {/* Bottom sweep */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-warm-white)] to-transparent" />
       </section>
 
       {/* ════ ABOUT ════ */}
@@ -87,7 +93,7 @@ export default function HomePage() {
                 {/* Stacked frame effect */}
                 <div className="absolute -inset-4 bg-gradient-to-br from-[var(--color-gold)]/10 to-transparent rounded-3xl" />
                 <div className="absolute -inset-2 bg-[var(--color-warm-white)] rounded-2xl" />
-                <div className="relative overflow-hidden rounded-2xl">
+                <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-black/10">
                   <Image
                     src="/photos/Gary-Joyal-2.jpg"
                     alt="Gary Joyal - CEO of Joyal Capital Management"
@@ -96,7 +102,12 @@ export default function HomePage() {
                     className="w-full object-cover"
                   />
                   {/* Subtle overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/30 via-transparent to-transparent" />
+                  {/* Bottom info bar */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-[var(--color-navy)]/80 to-transparent">
+                    <p className="text-white font-bold text-sm tracking-wide">Founder, CEO &amp; Managing Director</p>
+                    <p className="text-white/50 text-xs mt-0.5">Joyal Capital Management, LLC</p>
+                  </div>
                 </div>
                 {/* Floating accent elements */}
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gradient-to-br from-[var(--color-gold)]/30 to-transparent rounded-2xl animate-float-slow -z-10" />
@@ -136,7 +147,7 @@ export default function HomePage() {
                 {/* Expertise pills */}
                 <div className="flex flex-wrap gap-3">
                   {expertise.map((e) => (
-                    <div key={e.label} className="group flex items-center gap-2 px-4 py-2.5 rounded-full bg-[var(--color-navy)]/5 hover:bg-[var(--color-gold)]/10 transition-colors duration-300 cursor-default">
+                    <div key={e.label} className="group flex items-center gap-2 px-4 py-2.5 rounded-full border border-[var(--color-navy)]/8 bg-white shadow-sm hover:bg-[var(--color-gold)]/10 hover:border-[var(--color-gold)]/20 hover:shadow-md transition-all duration-300 cursor-default">
                       <e.icon size={14} className="text-[var(--color-gold-dark)] group-hover:scale-110 transition-transform" />
                       <span className="text-xs font-semibold text-[var(--color-navy)] tracking-wide">{e.label}</span>
                     </div>
@@ -175,9 +186,17 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {subsidiaries.map((sub, i) => (
               <ScrollReveal key={sub.title} delay={i * 0.1} direction={i % 2 === 0 ? "left" : "right"}>
-                <div className="card-premium group p-8 md:p-10 h-full">
+                <div className="card-premium group p-8 md:p-10 h-full relative">
+                  {/* Top colored stripe */}
+                  <div className={`absolute top-0 left-8 right-8 h-[3px] rounded-b-full bg-gradient-to-r ${sub.stripe} opacity-40 group-hover:opacity-100 group-hover:left-6 group-hover:right-6 transition-all duration-500`} />
+
+                  {/* Number badge */}
+                  <div className="absolute top-6 right-8 text-5xl font-black text-[var(--color-navy)]/[0.04] group-hover:text-[var(--color-gold)]/[0.08] transition-colors duration-500 select-none">
+                    0{i + 1}
+                  </div>
+
                   {/* Icon */}
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${sub.accent} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-400`}>
+                  <div className={`w-14 h-14 rounded-2xl ${sub.iconBg} bg-gradient-to-br ${sub.accent} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-lg transition-all duration-400`}>
                     <sub.icon
                       size={24}
                       className="icon-hover text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors duration-300"
@@ -233,26 +252,34 @@ export default function HomePage() {
             </ScrollReveal>
 
             <ScrollReveal direction="right">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Foundation card */}
-                <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-gold)]/15 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Heart size={22} className="text-[var(--color-gold)]" />
+                <div className="glass rounded-2xl p-7 hover:bg-white/[0.08] hover:border-white/[0.12] transition-all duration-400 group relative overflow-hidden">
+                  {/* Subtle corner glow */}
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-[var(--color-gold)]/[0.06] rounded-full blur-2xl group-hover:bg-[var(--color-gold)]/[0.12] transition-all duration-500" />
+                  <div className="relative">
+                    <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/20 to-[var(--color-gold)]/5 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[var(--color-gold)]/10 transition-all duration-300">
+                      <Heart size={22} className="text-[var(--color-gold)]" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">JCM Foundation</h3>
+                    <p className="text-white/45 text-sm leading-relaxed">
+                      Facilitating philanthropic involvement in local communities where JCM has a presence.
+                    </p>
                   </div>
-                  <h3 className="text-white font-bold mb-2">JCM Foundation</h3>
-                  <p className="text-white/40 text-sm leading-relaxed">
-                    Facilitating philanthropic involvement in local communities where JCM has a presence.
-                  </p>
                 </div>
                 {/* $100 for 100 card */}
-                <div className="glass rounded-2xl p-6 hover:bg-white/[0.07] transition-all duration-300 group">
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-gold)]/15 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Award size={22} className="text-[var(--color-gold)]" />
+                <div className="glass rounded-2xl p-7 hover:bg-white/[0.08] hover:border-white/[0.12] transition-all duration-400 group relative overflow-hidden">
+                  {/* Subtle corner glow */}
+                  <div className="absolute -top-12 -right-12 w-24 h-24 bg-[var(--color-gold)]/[0.06] rounded-full blur-2xl group-hover:bg-[var(--color-gold)]/[0.12] transition-all duration-500" />
+                  <div className="relative">
+                    <div className="w-13 h-13 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/20 to-[var(--color-gold)]/5 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[var(--color-gold)]/10 transition-all duration-300">
+                      <Award size={22} className="text-[var(--color-gold)]" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-2">$100 for 100</h3>
+                    <p className="text-white/45 text-sm leading-relaxed">
+                      Thousands of underprivileged children have benefited through this charitable program.
+                    </p>
                   </div>
-                  <h3 className="text-white font-bold mb-2">$100 for 100</h3>
-                  <p className="text-white/40 text-sm leading-relaxed">
-                    Thousands of underprivileged children have benefited through this charitable program.
-                  </p>
                 </div>
               </div>
             </ScrollReveal>
@@ -282,13 +309,14 @@ export default function HomePage() {
             {/* Right column - feature blocks */}
             <div className="lg:col-span-3 space-y-6">
               <ScrollReveal delay={0.1}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors">
-                      <TrendingUp size={18} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
+                      <TrendingUp size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[var(--color-navy)] mb-2">Diversified Growth</h3>
+                      <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Diversified Growth</h3>
                       <p className="text-gray-500 leading-relaxed">
                         One of the key inputs that enabled Gary to grow his brand is the
                         diversification of his investments. Gary has grown JCM to almost
@@ -300,13 +328,14 @@ export default function HomePage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.2}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors">
-                      <Users2 size={18} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
+                      <Users2 size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[var(--color-navy)] mb-2">Client-Centered Leadership</h3>
+                      <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Client-Centered Leadership</h3>
                       <p className="text-gray-500 leading-relaxed">
                         As the CEO of a well-established, multi-state company, Gary
                         manages everything from one-on-one client engagements to large
@@ -318,13 +347,14 @@ export default function HomePage() {
               </ScrollReveal>
 
               <ScrollReveal delay={0.3}>
-                <div className="glass-light rounded-2xl p-7 group hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors">
-                      <Target size={18} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                <div className="glass-light rounded-2xl p-7 group hover:shadow-xl hover:-translate-y-1 transition-all duration-400 relative overflow-hidden">
+                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-r-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="flex items-start gap-5">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--color-navy)]/8 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
+                      <Target size={20} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[var(--color-navy)] mb-2">Future Forward</h3>
+                      <h3 className="font-bold text-lg text-[var(--color-navy)] mb-2">Future Forward</h3>
                       <p className="text-gray-500 leading-relaxed">
                         Gary plans to continue to grow JCM and its clientele
                         through hard work, dedication and an eye for growth and
@@ -354,26 +384,37 @@ export default function HomePage() {
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-dots opacity-50" />
 
+        {/* Decorative lines */}
+        <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/10 to-transparent" />
+
         <ScrollReveal>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-6">
               Get Started
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Ready to <span className="text-gradient">Connect?</span>
             </h2>
-            <p className="text-white/45 max-w-lg mx-auto mb-10 text-lg">
+            <p className="text-white/50 max-w-lg mx-auto mb-12 text-lg leading-relaxed">
               For more information about Joyal Capital Management and its
               services, reach out using the contact form.
             </p>
-            <Link
-              href="/contact"
-              className="btn-shimmer inline-flex items-center gap-3 px-10 py-4.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-bold text-sm uppercase tracking-wider rounded-full shadow-2xl shadow-[var(--color-gold)]/25"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Contact Gary <ArrowRight size={16} />
-              </span>
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/contact"
+                className="btn-shimmer inline-flex items-center gap-3 px-10 py-4.5 bg-gradient-to-r from-[var(--color-gold-dark)] via-[var(--color-gold)] to-[var(--color-gold-light)] text-[var(--color-navy)] font-bold text-sm uppercase tracking-wider rounded-full shadow-2xl shadow-[var(--color-gold)]/25"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Contact Gary <ArrowRight size={16} />
+                </span>
+              </Link>
+              <Link
+                href="/press"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/15 text-white/80 font-semibold text-sm uppercase tracking-wider hover:bg-white/10 hover:border-white/25 backdrop-blur-md transition-all duration-300"
+              >
+                View Press
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
       </section>

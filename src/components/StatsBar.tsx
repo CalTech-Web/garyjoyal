@@ -5,43 +5,63 @@ import { Users, MapPin, Briefcase, Calendar } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const stats = [
-  { icon: Users, value: "500+", label: "Clients Nationwide" },
-  { icon: MapPin, value: "30", label: "States Served" },
-  { icon: Briefcase, value: "20", label: "Employees" },
-  { icon: Calendar, value: "1982", label: "Founded" },
+  { icon: Users, value: "500+", label: "Clients Nationwide", useCommas: false },
+  { icon: MapPin, value: "30", label: "States Served", useCommas: false },
+  { icon: Briefcase, value: "20", label: "Employees", useCommas: false },
+  { icon: Calendar, value: "1982", label: "Founded", useCommas: false },
 ];
 
 export default function StatsBar() {
   return (
-    <section className="relative overflow-hidden py-20 noise-overlay" style={{
-      background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 40%, var(--color-navy-dark) 100%)",
+    <section className="relative overflow-hidden py-24 noise-overlay" style={{
+      background: "linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-dark) 100%)",
     }}>
       {/* Decorative glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[var(--color-gold)]/[0.04] rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--color-gold)]/[0.03] rounded-full blur-[150px]" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        {/* Section heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
+        >
+          <span className="inline-block px-4 py-1.5 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/5 text-[var(--color-gold)] uppercase tracking-[0.15em] text-xs font-bold mb-4">
+            By the Numbers
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Our Track Record
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.12, ease: [0.25, 0.4, 0.25, 1] }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.25, 0.4, 0.25, 1] as const }}
               className="group"
             >
-              <div className="glass rounded-2xl p-6 text-center hover:bg-white/[0.06] transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--color-gold)]/20 to-[var(--color-gold)]/5 mb-4 group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-[var(--color-gold)]/10 transition-all duration-400">
+              <div className="relative rounded-2xl p-6 md:p-8 text-center border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.07] hover:border-white/[0.1] transition-all duration-400 overflow-hidden">
+                {/* Subtle top glow on hover */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/0 group-hover:via-[var(--color-gold)]/40 to-transparent transition-all duration-500" />
+
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--color-gold)]/10 mb-5 group-hover:bg-[var(--color-gold)]/15 group-hover:scale-110 transition-all duration-300">
                   <stat.icon
-                    size={24}
-                    className="icon-hover text-[var(--color-gold)] group-hover:text-[var(--color-gold-light)] transition-colors duration-300"
+                    size={22}
+                    className="icon-hover text-[var(--color-gold)]"
                   />
                 </div>
                 <AnimatedCounter
                   value={stat.value}
-                  className="block text-3xl md:text-4xl font-bold text-white mb-1 tracking-tight"
+                  useCommas={stat.useCommas}
+                  className="block text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight"
                 />
-                <p className="text-white/40 text-sm font-medium">{stat.label}</p>
+                <p className="text-white/40 text-sm font-medium tracking-wide">{stat.label}</p>
               </div>
             </motion.div>
           ))}
