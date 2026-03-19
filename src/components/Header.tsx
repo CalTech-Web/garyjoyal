@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -14,40 +15,52 @@ const navLinks = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 bg-[var(--color-navy)]/95 backdrop-blur-xl border-b border-white/[0.06] shadow-lg shadow-black/10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[var(--color-navy)]/95 backdrop-blur-2xl shadow-xl shadow-black/10 border-b border-white/[0.04]"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
         <Link href="/" className="flex items-center gap-3 group">
-          <Image
-            src="/photos/cropped-logo1.png"
-            alt="Gary Joyal"
-            width={40}
-            height={40}
-            className="rounded transition-transform duration-300 group-hover:scale-105"
-          />
-          <span className="text-white font-semibold text-lg hidden sm:block group-hover:text-[var(--color-gold)] transition-colors duration-300">
+          <div className="relative">
+            <Image
+              src="/photos/cropped-logo1.png"
+              alt="Gary Joyal"
+              width={40}
+              height={40}
+              className="rounded-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-[var(--color-gold)]/10"
+            />
+          </div>
+          <span className="text-white font-bold text-lg hidden sm:block group-hover:text-[var(--color-gold)] transition-colors duration-300">
             Gary Joyal
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`relative text-sm font-medium transition-colors duration-300 py-1 ${
+              className={`relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 pathname === link.href
-                  ? "text-[var(--color-gold)]"
-                  : "text-white/70 hover:text-[var(--color-gold)]"
+                  ? "text-[var(--color-gold)] bg-[var(--color-gold)]/10"
+                  : "text-white/65 hover:text-white hover:bg-white/5"
               }`}
             >
               {link.label}
-              {pathname === link.href && (
-                <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full" />
-              )}
             </Link>
           ))}
         </nav>
@@ -55,32 +68,48 @@ export default function Header() {
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-white p-2 hover:text-[var(--color-gold)] transition-colors"
+          className="md:hidden text-white/80 p-2.5 rounded-xl hover:bg-white/5 hover:text-[var(--color-gold)] transition-all"
           aria-label="Toggle navigation"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
       {/* Mobile Nav */}
-      {mobileOpen && (
-        <nav className="md:hidden bg-[var(--color-navy)]/98 backdrop-blur-xl border-t border-white/[0.06] px-4 pb-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className={`block py-3.5 text-sm font-medium border-b border-white/5 transition-colors duration-300 ${
-                pathname === link.href
-                  ? "text-[var(--color-gold)]"
-                  : "text-white/70 hover:text-[var(--color-gold)]"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.nav
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+            className="md:hidden overflow-hidden bg-[var(--color-navy)]/98 backdrop-blur-2xl border-t border-white/[0.04]"
+          >
+            <div className="px-4 py-3">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block py-3.5 px-4 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      pathname === link.href
+                        ? "text-[var(--color-gold)] bg-[var(--color-gold)]/10"
+                        : "text-white/60 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

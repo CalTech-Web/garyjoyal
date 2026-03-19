@@ -7,6 +7,7 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [focused, setFocused] = useState<string | null>(null);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,107 +52,111 @@ export default function ContactForm() {
     }
   }
 
-  const inputClasses =
-    "w-full px-4 py-3 rounded-xl border border-gray-200 bg-[var(--color-warm-white)]/50 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-gold)]/40 focus:border-[var(--color-gold)] focus:bg-white transition-all duration-300 placeholder:text-gray-400";
+  const inputBase =
+    "w-full px-4 py-3.5 rounded-xl border bg-[var(--color-warm-white)]/50 text-sm focus:outline-none focus:bg-white transition-all duration-300 placeholder:text-gray-400";
+
+  const borderClass = (field: string) =>
+    focused === field
+      ? "border-[var(--color-gold)] ring-2 ring-[var(--color-gold)]/20 shadow-sm"
+      : "border-gray-200/80 hover:border-gray-300";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-[var(--color-navy)] mb-1.5"
-        >
-          Your Name *
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          required
-          minLength={2}
-          className={inputClasses}
-          placeholder="Full name"
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="name" className="block text-xs font-semibold text-[var(--color-navy)] uppercase tracking-wider mb-2">
+            Your Name *
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            minLength={2}
+            className={`${inputBase} ${borderClass("name")}`}
+            placeholder="Full name"
+            onFocus={() => setFocused("name")}
+            onBlur={() => setFocused(null)}
+          />
+        </div>
+        <div>
+          <label htmlFor="email" className="block text-xs font-semibold text-[var(--color-navy)] uppercase tracking-wider mb-2">
+            Your Email *
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            className={`${inputBase} ${borderClass("email")}`}
+            placeholder="you@example.com"
+            onFocus={() => setFocused("email")}
+            onBlur={() => setFocused(null)}
+          />
+        </div>
       </div>
 
       <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-[var(--color-navy)] mb-1.5"
-        >
-          Your Email *
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          className={inputClasses}
-          placeholder="you@example.com"
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor="subject"
-          className="block text-sm font-medium text-[var(--color-navy)] mb-1.5"
-        >
+        <label htmlFor="subject" className="block text-xs font-semibold text-[var(--color-navy)] uppercase tracking-wider mb-2">
           Subject
         </label>
         <input
           type="text"
           id="subject"
           name="subject"
-          className={inputClasses}
+          className={`${inputBase} ${borderClass("subject")}`}
           placeholder="How can we help?"
+          onFocus={() => setFocused("subject")}
+          onBlur={() => setFocused(null)}
         />
       </div>
 
       <div>
-        <label
-          htmlFor="message"
-          className="block text-sm font-medium text-[var(--color-navy)] mb-1.5"
-        >
+        <label htmlFor="message" className="block text-xs font-semibold text-[var(--color-navy)] uppercase tracking-wider mb-2">
           Your Message
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
-          className={`${inputClasses} resize-none`}
+          className={`${inputBase} ${borderClass("message")} resize-none`}
           placeholder="Tell us more about your inquiry..."
+          onFocus={() => setFocused("message")}
+          onBlur={() => setFocused(null)}
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="btn-lift inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[var(--color-navy)] to-[var(--color-navy-light)] text-white text-sm font-semibold rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[var(--color-navy)]/15 transition-all duration-300"
+        className="btn-shimmer inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[var(--color-navy)] to-[var(--color-navy-light)] text-white text-sm font-bold uppercase tracking-wider rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-[var(--color-navy)]/15"
       >
-        {loading ? (
-          <>
-            <Loader2 size={16} className="animate-spin" />
-            Sending...
-          </>
-        ) : (
-          <>
-            <Send size={16} />
-            Send Message
-          </>
-        )}
+        <span className="relative z-10 flex items-center gap-2">
+          {loading ? (
+            <>
+              <Loader2 size={16} className="animate-spin" />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send size={16} />
+              Send Message
+            </>
+          )}
+        </span>
       </button>
 
       {success && (
-        <div className="flex items-center gap-2 text-green-700 bg-green-50 border border-green-200 rounded-xl px-5 py-3.5 text-sm">
-          <CheckCircle size={16} />
-          Thank you! Your message has been sent successfully.
+        <div className="flex items-center gap-3 text-green-700 bg-green-50 border border-green-200/80 rounded-xl px-5 py-4 text-sm">
+          <CheckCircle size={18} />
+          <span>Thank you! Your message has been sent successfully.</span>
         </div>
       )}
 
       {error && (
-        <div className="flex items-center gap-2 text-red-700 bg-red-50 border border-red-200 rounded-xl px-5 py-3.5 text-sm">
-          <AlertCircle size={16} />
-          {error}
+        <div className="flex items-center gap-3 text-red-700 bg-red-50 border border-red-200/80 rounded-xl px-5 py-4 text-sm">
+          <AlertCircle size={18} />
+          <span>{error}</span>
         </div>
       )}
     </form>

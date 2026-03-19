@@ -149,75 +149,86 @@ export default function PressPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden" style={{
-        background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-dark) 100%)",
+      <section className="relative py-24 overflow-hidden noise-overlay" style={{
+        background: "linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
       }}>
-        <div className="absolute top-10 right-10 w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-3xl" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <p className="text-gradient uppercase tracking-[0.25em] text-sm font-semibold mb-3">
+        <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-5">
             News &amp; Updates
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">Press Releases</h1>
+          <p className="text-white/40 max-w-lg mx-auto text-lg">
+            Latest news and announcements from Joyal Capital Management.
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">Press</h1>
-          <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mt-5" />
         </div>
       </section>
 
       {/* Press Releases */}
-      <section className="py-20 bg-[var(--color-warm-white)] bg-pattern">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
-          {pressReleases.map((pr, i) => (
-            <ScrollReveal key={pr.id} delay={i * 0.05}>
-              <article className="card-glow bg-white rounded-xl border border-gray-100/80 overflow-hidden group">
-                {pr.image && (
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <Image
-                      src={pr.image}
-                      alt={pr.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                  </div>
-                )}
-                <div className="p-8 md:p-10">
-                  <p className="text-gradient text-sm font-semibold uppercase tracking-wider mb-2">
-                    {pr.date}
-                  </p>
-                  <h2 className="text-2xl font-bold text-[var(--color-navy)] mb-2">
-                    {pr.title}
-                  </h2>
-                  <p className="text-gray-500 font-medium mb-6">
-                    {pr.subtitle}
-                  </p>
-                  {pr.content.map((para, j) => (
-                    <p
-                      key={j}
-                      className="text-gray-600 leading-relaxed mb-4"
-                    >
-                      {para}
-                    </p>
-                  ))}
-                  {pr.quote && (
-                    <blockquote className="relative border-l-4 border-gradient-to-b border-[var(--color-gold)] pl-6 mt-8 py-2">
-                      <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full -ml-[2px]" />
-                      <p className="text-gray-500 italic leading-relaxed">
-                        {pr.quote}
-                      </p>
-                      <footer className="mt-3 text-sm font-semibold text-[var(--color-navy)] not-italic">
-                        - Gary F. Joyal, CEO &amp; Managing Partner
-                      </footer>
-                    </blockquote>
+      <section className="py-24 bg-[var(--color-warm-white)] bg-dots relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Timeline line */}
+          <div className="hidden md:block absolute left-1/2 top-24 bottom-24 w-px bg-gradient-to-b from-transparent via-[var(--color-gold)]/15 to-transparent" />
+
+          <div className="space-y-16">
+            {pressReleases.map((pr, i) => (
+              <ScrollReveal key={pr.id} delay={i * 0.05}>
+                <article className="card-premium overflow-hidden group">
+                  {pr.image && (
+                    <div className="relative h-64 md:h-80 overflow-hidden">
+                      <Image
+                        src={pr.image}
+                        alt={pr.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)]/60 via-transparent to-transparent" />
+                      {/* Date badge on image */}
+                      <div className="absolute bottom-4 left-4">
+                        <span className="inline-block px-3 py-1.5 rounded-full bg-[var(--color-gold)]/90 text-[var(--color-navy)] text-xs font-bold uppercase tracking-wider">
+                          {pr.date}
+                        </span>
+                      </div>
+                    </div>
                   )}
-                </div>
-              </article>
-            </ScrollReveal>
-          ))}
+                  <div className="p-8 md:p-10">
+                    {!pr.image && (
+                      <span className="inline-block px-3 py-1.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold-dark)] text-xs font-bold uppercase tracking-wider mb-4">
+                        {pr.date}
+                      </span>
+                    )}
+                    <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-navy)] mb-3 leading-tight">
+                      {pr.title}
+                    </h2>
+                    <p className="text-gray-500 font-medium mb-6 text-lg">
+                      {pr.subtitle}
+                    </p>
+                    {pr.content.map((para, j) => (
+                      <p key={j} className="text-gray-600 leading-relaxed mb-4">
+                        {para}
+                      </p>
+                    ))}
+                    {pr.quote && (
+                      <blockquote className="relative mt-8 p-6 rounded-xl bg-[var(--color-warm-white)] border border-[var(--color-gold)]/10">
+                        <div className="absolute top-4 left-4 text-[var(--color-gold)]/20 text-5xl font-serif leading-none">&ldquo;</div>
+                        <p className="text-gray-500 italic leading-relaxed pl-6 relative z-10">
+                          {pr.quote}
+                        </p>
+                        <footer className="mt-4 pl-6 text-sm font-bold text-[var(--color-navy)] not-italic">
+                          Gary F. Joyal, CEO &amp; Managing Partner
+                        </footer>
+                      </blockquote>
+                    )}
+                  </div>
+                </article>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Disclaimer */}
-      <section className="py-10 bg-[var(--color-warm-gray)] relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--color-gold)]/20 to-transparent" />
+      <section className="py-10 bg-[var(--color-warm-gray)] relative section-fade-top">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs text-gray-400 leading-relaxed">
             The announcements above are for informational purposes only for the

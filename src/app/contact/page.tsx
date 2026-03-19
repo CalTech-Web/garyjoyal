@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Clock, Globe } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -32,53 +32,90 @@ export const metadata: Metadata = {
   },
 };
 
+const contactInfo = [
+  {
+    icon: Mail,
+    title: "Email Us",
+    description: "Send a message and we'll respond promptly.",
+  },
+  {
+    icon: Clock,
+    title: "Business Hours",
+    description: "Monday - Friday, 9:00 AM - 5:00 PM EST",
+  },
+  {
+    icon: Globe,
+    title: "Nationwide Service",
+    description: "Serving clients across 30+ states.",
+  },
+];
+
 export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative py-20 overflow-hidden" style={{
-        background: "linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-dark) 100%)",
+      <section className="relative py-24 overflow-hidden noise-overlay" style={{
+        background: "linear-gradient(160deg, var(--color-navy-dark) 0%, var(--color-navy) 50%, var(--color-navy-light) 100%)",
       }}>
-        <div className="absolute bottom-10 left-10 w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-3xl" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <p className="text-gradient uppercase tracking-[0.25em] text-sm font-semibold mb-3">
+        <div className="absolute top-10 right-[10%] w-80 h-80 bg-[var(--color-gold)]/5 rounded-full blur-[120px] animate-pulse-glow" />
+        <div className="absolute bottom-10 left-[5%] w-64 h-64 bg-[var(--color-gold)]/5 rounded-full blur-[100px]" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <span className="inline-block px-5 py-2 rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/10 backdrop-blur-sm text-[var(--color-gold)] uppercase tracking-[0.2em] text-xs font-semibold mb-5">
             Reach Out
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-            Contact
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            Get in Touch
           </h1>
-          <div className="w-16 h-1 bg-gradient-to-r from-[var(--color-gold)] to-[var(--color-gold-light)] rounded-full mx-auto mt-5" />
+          <p className="text-white/40 max-w-lg mx-auto text-lg">
+            For more information about Joyal Capital Management and its services.
+          </p>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-[var(--color-warm-white)] bg-pattern">
-        <ScrollReveal>
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="card-glow bg-white rounded-2xl shadow-lg shadow-black/[0.03] border border-gray-100/80 p-8 md:p-10">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-navy)]/10 to-[var(--color-navy)]/5 flex items-center justify-center">
-                  <Mail size={20} className="text-[var(--color-navy)]" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-[var(--color-navy)]">
-                    Send a Message
-                  </h2>
-                  <p className="text-gray-500 text-sm">
-                    We will get back to you as soon as possible.
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-gray-600 leading-relaxed mb-8">
-                For more information, please contact Gary using the form below
-                and thank you for your inquiry.
-              </p>
-
-              <ContactForm />
+      <section className="py-24 bg-[var(--color-warm-white)] bg-dots relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+            {/* Info Cards */}
+            <div className="lg:col-span-2 space-y-5">
+              {contactInfo.map((info, i) => (
+                <ScrollReveal key={info.title} delay={i * 0.1} direction="left">
+                  <div className="glass-light rounded-2xl p-6 group hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--color-navy)]/10 to-[var(--color-navy)]/5 flex items-center justify-center shrink-0 group-hover:bg-[var(--color-gold)]/15 transition-colors duration-300">
+                        <info.icon size={18} className="text-[var(--color-navy)] group-hover:text-[var(--color-gold-dark)] transition-colors" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[var(--color-navy)] mb-1">{info.title}</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">{info.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
+
+            {/* Form */}
+            <ScrollReveal direction="right" className="lg:col-span-3">
+              <div className="card-premium p-8 md:p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--color-gold)]/15 to-[var(--color-gold)]/5 flex items-center justify-center">
+                    <Mail size={20} className="text-[var(--color-gold-dark)]" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-[var(--color-navy)]">
+                      Send a Message
+                    </h2>
+                    <p className="text-gray-400 text-sm">
+                      We will get back to you as soon as possible.
+                    </p>
+                  </div>
+                </div>
+                <ContactForm />
+              </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
     </>
   );
