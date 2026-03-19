@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { Landmark } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -13,15 +13,11 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 relative">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
           {/* Brand */}
-          <div className="flex items-center gap-3 justify-center md:justify-start">
-            <Image
-              src="/photos/cropped-logo1.png"
-              alt="Gary Joyal"
-              width={36}
-              height={36}
-              className="rounded-lg opacity-80"
-            />
-            <span className="text-white/80 font-bold text-lg">Gary Joyal</span>
+          <div className="flex items-center gap-2.5 justify-center md:justify-start">
+            <div className="w-9 h-9 rounded-lg bg-[var(--color-gold)]/15 flex items-center justify-center">
+              <Landmark size={18} className="text-[var(--color-gold)]" />
+            </div>
+            <span className="text-white/80 font-bold text-lg tracking-tight">Gary <span className="text-[var(--color-gold)]">Joyal</span></span>
           </div>
 
           {/* Nav */}

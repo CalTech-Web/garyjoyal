@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Landmark } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -33,18 +32,12 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-[72px]">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <Image
-              src="/photos/cropped-logo1.png"
-              alt="Gary Joyal"
-              width={40}
-              height={40}
-              className="rounded-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-[var(--color-gold)]/10"
-            />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="w-9 h-9 rounded-lg bg-[var(--color-gold)]/15 flex items-center justify-center group-hover:bg-[var(--color-gold)]/25 transition-all duration-300">
+            <Landmark size={18} className="text-[var(--color-gold)] animate-pulse-glow" />
           </div>
-          <span className="text-white font-bold text-lg hidden sm:block group-hover:text-[var(--color-gold)] transition-colors duration-300">
-            Gary Joyal
+          <span className="text-white font-bold text-lg tracking-tight group-hover:text-white/90 transition-colors duration-300">
+            Gary <span className="text-[var(--color-gold)]">Joyal</span>
           </span>
         </Link>
 
