@@ -9,7 +9,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://garyjoyal.vercel.app";
+const siteUrl = "https://www.garyjoyal.com";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Gary Joyal",
   },
   description:
-    "Gary Joyal is the Founder and CEO of Joyal Capital Management, LLC - a leading financial services firm specializing in asset protection, estate planning, and family-owned ventures with over two decades of experience.",
+    "Gary Joyal is the Founder and CEO of Joyal Capital Management, LLC, specializing in asset protection, estate planning, and family-owned ventures.",
   keywords: [
     "Gary Joyal",
     "Joyal Capital Management",

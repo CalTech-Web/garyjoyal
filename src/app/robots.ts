@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: "https://garyjoyal.vercel.app/sitemap.xml",
+    sitemap: "https://www.garyjoyal.com/sitemap.xml",
   };
 }
